@@ -7,8 +7,11 @@ public class Fournisseur {
 	
 	public Fournisseur() {
 	}
+
+
 	
 	public Fournisseur( String name ) {
+
 		this.name = name;
 	}
 	
@@ -16,7 +19,7 @@ public class Fournisseur {
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

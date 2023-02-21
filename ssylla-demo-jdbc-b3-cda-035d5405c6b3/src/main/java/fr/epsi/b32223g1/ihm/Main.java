@@ -13,18 +13,19 @@ import java.util.Scanner;
 public class Main {
 	
 	public static void main( String[] args ) {
-		authentification();
-		
-		authentificationSecurisee();
+
+	}
+
+	private static  void addFournisseurDao(){
 		try {
 			FournisseurDAO dao = DAOFactory.getFournisseurDAO();
-			
+
 			//Ajout d'un nouveau fournisseur
 			dao.insert( new Fournisseur( "L''espace création" ) );
-			
+
 			//Extraction
 			List<Fournisseur> fournisseurs = dao.extraire();
-		
+
 			for ( Fournisseur item : fournisseurs ) {
 				System.out.println( item );
 			}

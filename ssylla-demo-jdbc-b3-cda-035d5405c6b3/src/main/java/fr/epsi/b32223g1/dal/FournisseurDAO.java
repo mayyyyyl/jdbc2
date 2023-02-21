@@ -9,9 +9,9 @@ public interface FournisseurDAO {
 	
 	List<Fournisseur> extraire() throws Exception;
 	
-	void insert( Fournisseur fournisseur )throws Exception;
+	void insert( Fournisseur fournisseur ) throws Exception;
 	
-	int update( String ancienNom, String nouveauNom );
+	int update( String ancienNom, String nouveauNom ) throws Exception;
 	
-	boolean delete( Fournisseur fournisseur );
+	boolean delete( Fournisseur fournisseur ) throws Exception;
 }
