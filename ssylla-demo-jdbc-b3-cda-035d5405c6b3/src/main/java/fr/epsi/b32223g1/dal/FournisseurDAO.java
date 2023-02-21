@@ -1,5 +1,6 @@
 package fr.epsi.b32223g1.dal;
 
+import fr.epsi.b32223g1.bo.Article;
 import fr.epsi.b32223g1.bo.Fournisseur;
 
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ public interface FournisseurDAO {
 	List<Fournisseur> extraire() throws Exception;
 	
 	void insert( Fournisseur fournisseur ) throws Exception;
+
+//	Fournisseur findById(Fournisseur fournisseur) throws SQLException;
 	
 	int update( String ancienNom, String nouveauNom ) throws Exception;
 	
