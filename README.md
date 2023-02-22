@@ -4,7 +4,7 @@
  
  ### Lancer le projet
  
- Prérequis: créer une base de données compta et avoir lancé le script.sql (le script utilisé en cours était différent que celui présent dans le tp4 Jdbc, pas id auto-incrémenté sur les tables -> voir fichier compta.sql)
+ Prérequis: créer une base de données compta et avoir lancé le script.sql (le script utilisé en cours était différent que celui présent dans le tp4 Jdbc, pas id auto-incrémenté sur les tables -> voir fichier compta.txt)
  
  
   - ` git clone https://github.com/mayyyyyl/jdbc2.git `
