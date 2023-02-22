@@ -4,19 +4,20 @@ import fr.epsi.b32223g1.bo.Fournisseur;
 import fr.epsi.b32223g1.dal.FournisseurDAO;
 import fr.epsi.b32223g1.dal.jdbc.FournisseurJDBCDAO;
 
-public class TestInsert {
+import java.sql.SQLException;
+
+public class TestFindById {
 
     public static void main(String[] args) {
         FournisseurDAO dao = new FournisseurJDBCDAO();
 
         try {
-            dao.insert(new Fournisseur(60, "La Maison de la Peinture"));
-
-            System.out.println("Insertion faite");
+            Fournisseur f = dao.findById(2);
+            System.out.println(f.toString());
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la recherche : " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Erreur lors de l'insertion : " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
-
 }
-

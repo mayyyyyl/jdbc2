@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ArticleDAO {
 
-//    List<Article> extraire() throws Exception;
+    List<Article> extraire() throws Exception;
 
     void insert( Article article ) throws SQLException;
 

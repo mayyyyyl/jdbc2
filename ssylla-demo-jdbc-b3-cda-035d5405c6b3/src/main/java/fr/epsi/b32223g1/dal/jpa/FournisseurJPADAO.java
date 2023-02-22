@@ -32,4 +32,9 @@ public class FournisseurJPADAO implements FournisseurDAO {
 		//TODO à coder
 		return false;
 	}
+
+	@Override
+	public Fournisseur findById(int id) throws Exception {
+		return null;
+	}
 }

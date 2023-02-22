@@ -10,7 +10,7 @@ import java.util.List;
 public class FournisseurJDBCDAO implements FournisseurDAO {
 
 	private static final String FIND_ALL_QUERY = "SELECT * FROM fournisseur";
-//	private static final String FIND_BY_ID_QUERY = "SELECT * FROM fournisseur WHERE id = ?";
+	private static final String FIND_BY_ID_QUERY = "SELECT * FROM fournisseur WHERE ID=?";
 	private static final String INSERT_QUERY = "INSERT INTO fournisseur (ID, NOM) VALUES (?,?)";
 
 	private static final String UPDATE_QUERY = "UPDATE fournisseur SET NOM= ? WHERE NOM= ?";
@@ -68,14 +68,18 @@ public class FournisseurJDBCDAO implements FournisseurDAO {
 		}
 	}
 
-//	@Override
-//    public Fournisseur findById(Fournisseur fournisseur) throws SQLException {
-//        Connection connection = DBConnection.getSingle().getSqlConnection();
-//
-//        try (PreparedStatement ps = connection.prepareStatement(FIND_BY_ID_QUERY)) {
-//            ps.setInt(1, fournisseur.getId());
-//			ps.executeUpdate();
-//			return
-//        }
-//    }
+    @Override
+    public Fournisseur findById(int id) throws SQLException {
+        Connection connection = DBConnection.getSingle().getSqlConnection();
+        try (PreparedStatement ps = connection.prepareStatement(FIND_BY_ID_QUERY)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String nom = rs.getString("NOM");
+                    return new Fournisseur(id, nom);
+                }
+            }
+        }
+        return null;
+    }
 }

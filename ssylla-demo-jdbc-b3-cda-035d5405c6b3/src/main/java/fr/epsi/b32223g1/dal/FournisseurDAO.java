@@ -12,9 +12,10 @@ public interface FournisseurDAO {
 	
 	void insert( Fournisseur fournisseur ) throws Exception;
 
-//	Fournisseur findById(Fournisseur fournisseur) throws SQLException;
 	
 	int update( String ancienNom, String nouveauNom ) throws Exception;
 	
 	boolean delete( Fournisseur fournisseur ) throws Exception;
+
+	Fournisseur findById(int id) throws Exception;
 }
