@@ -15,7 +15,9 @@ public class ArticleJDBCDAO implements ArticleDAO {
     private static final String INSERT_QUERY = "INSERT INTO article (id, ref, designation, prix, id_fou) VALUES (?,?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE article SET ref = ?, designation = ?, prix = ?, id_fou = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM article WHERE id = ?";
-
+    private static final String DELETE_PEINTURE_QUERY ="DELETE FROM article WHERE designation LIKE '%Peinture%'";
+    private static final String AVERAGE_PRICE_QUERY = "SELECT AVG(prix) FROM article";
+    private static final  String UPDATE_PRICE_QUERY ="UPDATE article SET prix = prix * 0.75 WHERE ref = 'PM01'";
 
     @Override
     public List<Article> extraire() throws SQLException {
@@ -30,7 +32,7 @@ public class ArticleJDBCDAO implements ArticleDAO {
                 String ref = rs.getString("ref");
                 String designation = rs.getString("designation");
                 double prix = rs.getDouble("prix");
-                int id_fou = rs.getInt("fournisseur_id");
+                int id_fou = rs.getInt("id_fou");
                 FournisseurDAO fournisseurDAO = new FournisseurJDBCDAO();
                 Fournisseur fournisseur = fournisseurDAO.findById(id_fou);
                 Article article = new Article(id, ref, designation, prix, fournisseur);
@@ -77,6 +79,42 @@ public class ArticleJDBCDAO implements ArticleDAO {
 
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
             ps.setInt(1, article.getId());
+            int rowsDeleted = ps.executeUpdate();
+            return rowsDeleted > 0;
+        }
+    }
+
+    @Override
+    public double avgprice() throws SQLException {
+        double avgprice = 0;
+        Connection connection = DBConnection.getSingle().getSqlConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(AVERAGE_PRICE_QUERY);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                avgprice = rs.getDouble(1);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return avgprice;
+    }
+
+    @Override
+    public int updateprice() throws SQLException {
+        Connection connection = DBConnection.getSingle().getSqlConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_PRICE_QUERY)) {
+            return ps.executeUpdate();
+        }
+    }
+
+    @Override
+    public boolean deletepeinture() throws SQLException {
+        Connection connection = DBConnection.getSingle().getSqlConnection();
+
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_PEINTURE_QUERY)) {
             int rowsDeleted = ps.executeUpdate();
             return rowsDeleted > 0;
         }

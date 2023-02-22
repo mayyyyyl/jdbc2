@@ -10,7 +10,7 @@ public class TestInsert {
         FournisseurDAO dao = new FournisseurJDBCDAO();
 
         try {
-            dao.insert(new Fournisseur(60, "La Maison de la Peinture"));
+            dao.insert(new Fournisseur(6, "La Maison de la Peinture"));
 
             System.out.println("Insertion faite");
         } catch (Exception e) {

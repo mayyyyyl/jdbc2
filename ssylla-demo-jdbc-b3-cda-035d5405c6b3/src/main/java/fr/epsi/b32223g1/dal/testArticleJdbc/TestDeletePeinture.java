@@ -1,25 +1,24 @@
-package fr.epsi.b32223g1.dal.testFournisseurJdbc;
+package fr.epsi.b32223g1.dal.testArticleJdbc;
 
 import fr.epsi.b32223g1.bo.Fournisseur;
+import fr.epsi.b32223g1.dal.ArticleDAO;
 import fr.epsi.b32223g1.dal.FournisseurDAO;
+import fr.epsi.b32223g1.dal.jdbc.ArticleJDBCDAO;
 import fr.epsi.b32223g1.dal.jdbc.FournisseurJDBCDAO;
 
-public class TestDelete {
-
+public class TestDeletePeinture {
     public static void main(String[] args) {
-        FournisseurDAO dao = new FournisseurJDBCDAO();
+        ArticleDAO dao = new ArticleJDBCDAO();
 
         try {
-            Fournisseur f = new Fournisseur(6, "La Maison de la Peinture");
-            boolean supprime = dao.delete(f);
+            boolean supprime = dao.deletepeinture();
             if (supprime) {
                 System.out.println("Suppression effectuée");
             } else {
-                System.out.println("Le fournisseur n'a pas été trouvé.");
+                System.out.println("L'article n'a pas été trouvé.");
             }
         } catch (Exception e) {
             System.err.println("Erreur lors de la suppression : " + e.getMessage());
         }
     }
-
 }

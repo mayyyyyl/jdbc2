@@ -15,4 +15,10 @@ public interface ArticleDAO {
     int update(Article article) throws SQLException;
 
     boolean delete(Article article) throws SQLException;
+
+    double avgprice() throws SQLException;
+
+    int updateprice() throws SQLException;
+
+    boolean deletepeinture() throws SQLException;
 }

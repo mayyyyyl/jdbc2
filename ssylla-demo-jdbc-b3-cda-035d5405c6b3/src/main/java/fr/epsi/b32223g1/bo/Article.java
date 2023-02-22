@@ -60,4 +60,9 @@ public class Article {
     public void setFournisseur(Fournisseur fournisseur) {
         this.fournisseur = fournisseur;
     }
+
+    @Override
+    public String toString() {
+        return "Article {" + "id=" + id + ", designation='" + designation + '\'' + '}';
+    }
 }
